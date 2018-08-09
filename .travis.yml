@@ -20,7 +20,7 @@ script:
   - docker exec flyimg vendor/bin/phpunit --coverage-clover build/logs/clover.xml
 
 after_script:
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then docker exec flyimg sh -c "CC_TEST_REPORTER_ID=6486ff026aa7ffc9b4496a79b9cb823ebd11ff0c265a4d08d1c0e15db07c882d ./cc-test-reporter after-build -t clover -p build/logs --exit-code $TRAVIS_TEST_RESULT"; fi
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then docker exec flyimg sh -c "CC_TEST_REPORTER_ID=6486ff026aa7ffc9b4496a79b9cb823ebd11ff0c265a4d08d1c0e15db07c882d cc-test-reporter-format-coverage --prefix /var/www/html ./cc-test-reporter after-build -t clover -p build/logs --exit-code $TRAVIS_TEST_RESULT"; fi
 
 branches:
   only:
